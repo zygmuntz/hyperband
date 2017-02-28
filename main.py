@@ -8,7 +8,10 @@ import cPickle as pickle
 from pprint import pprint
 
 from hyperband import Hyperband
-from defs_gb import get_params, try_params
+#from defs_gb import get_params, try_params
+#from defs_rf import get_params, try_params
+#from defs_xt import get_params, try_params
+from defs_rf_xt import get_params, try_params
 
 try:
 	output_file = sys.argv[1]

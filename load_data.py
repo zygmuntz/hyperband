@@ -2,6 +2,8 @@ import cPickle as pickle
 
 data_file = 'data/xy.pkl'
 
+print "loading..."
+
 with open( data_file, 'rb' ) as f:
 	data = pickle.load( f )
 
