@@ -1,19 +1,12 @@
 "function (and parameter space) definitions for hyperband"
 "binary classification with random forest"
 
-import numpy as np
+from common_defs import *
 
-from math import log
-from time import time
-from pprint import pprint
+# a dict with x_train, y_train, x_test, y_test
+from load_data import data
 
 from sklearn.ensemble import RandomForestClassifier as RF
-from sklearn.metrics import roc_auc_score as AUC, log_loss, accuracy_score as accuracy
-
-from hyperopt import hp
-from hyperopt.pyll.stochastic import sample
-
-from load_data import x_train, y_train, x_test, y_test
 
 #
 
@@ -29,20 +22,12 @@ space = {
 	'min_samples_leaf': hp.quniform( 'msl', 1, 10, 1 ),
 }
 
-#
-
 def get_params():
 
 	params = sample( space )
-	new_params = {}
-	for k, v in params.items():
-		if type( v ) == float and int( v ) == v:
-			new_params[k] = int( v )
-		else:
-			new_params[k] = v
-			
-	return new_params
+	return handle_integers( params )
 
+#
 
 def try_params( n_iterations, params ):
 	
@@ -51,28 +36,5 @@ def try_params( n_iterations, params ):
 	pprint( params )
 	
 	clf = RF( n_estimators = n_estimators, verbose = 0, n_jobs = -1, **params )
-	clf.fit( x_train, y_train )	
-	
-	p = clf.predict_proba( x_train )[:,1]
 
-	ll = log_loss( y_train, p )
-	auc = AUC( y_train, p )
-	acc = accuracy( y_train, np.round( p ))
-
-	print "\n# training | log loss: {:.2%}, AUC: {:.2%}, accuracy: {:.2%}".format( ll, auc, acc )
-
-	#
-
-	p = clf.predict_proba( x_test )[:,1]
-
-	ll = log_loss( y_test, p )
-	auc = AUC( y_test, p )
-	acc = accuracy( y_test, np.round( p ))
-
-	print "# testing  | log loss: {:.2%}, AUC: {:.2%}, accuracy: {:.2%}".format( ll, auc, acc )	
-	
-	return { 'loss': ll, 'log_loss': ll, 'auc': auc }
-
-
-
-	
+	return train_and_eval_sklearn_classifier( clf, data )
