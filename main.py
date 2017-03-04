@@ -8,12 +8,13 @@ import cPickle as pickle
 from pprint import pprint
 
 from hyperband import Hyperband
-from defs_gb import get_params, try_params
-from defs_rf import get_params, try_params
-#from defs_xt import get_params, try_params
-#from defs_rf_xt import get_params, try_params
-from defs_sgd import get_params, try_params
-from defs_keras_mlp import get_params, try_params
+
+from defs.gb import get_params, try_params
+#from defs.rf import get_params, try_params
+#from defs.xt import get_params, try_params
+#from defs.rf_xt import get_params, try_params
+#from defs.sgd import get_params, try_params
+#from defs.keras_mlp import get_params, try_params
 
 try:
 	output_file = sys.argv[1]
@@ -22,7 +23,7 @@ try:
 except IndexError:
 	output_file = 'results.pkl'
 	
-print "will save results to", output_file	
+print "Will save results to", output_file
 
 #
 
@@ -37,6 +38,7 @@ for r in sorted( results, key = lambda x: x['loss'] )[:5]:
 	pprint( r['params'] )
 	print
 
+print "saving..."
 
 with open( output_file, 'wb' ) as f:
 	pickle.dump( results, f )

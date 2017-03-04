@@ -37,19 +37,15 @@ def train_and_eval_sklearn_classifier( clf, data ):
 	x_train = data['x_train']
 	y_train = data['y_train']
 	
+	x_test = data['x_test']
+	y_test = data['y_test']	
+	
 	clf.fit( x_train, y_train )	
 	
-	return evaluate_classifier( clf, data )
-
-def evaluate_classifier( clf, data ):
-
-	x_train = data['x_train']
-	y_train = data['y_train']
-
-	x_test = data['x_test']
-	y_test = data['y_test']
-	
-	p = clf.predict_proba( x_train )[:,1]
+	try:
+		p = clf.predict_proba( x_train )[:,1]	# sklearn convention
+	except IndexError:
+		p = clf.predict_proba( x_train )
 
 	ll = log_loss( y_train, p )
 	auc = AUC( y_train, p )
@@ -59,7 +55,10 @@ def evaluate_classifier( clf, data ):
 
 	#
 
-	p = clf.predict_proba( x_test )[:,1]
+	try:
+		p = clf.predict_proba( x_test )[:,1]	# sklearn convention
+	except IndexError:
+		p = clf.predict_proba( x_test )
 
 	ll = log_loss( y_test, p )
 	auc = AUC( y_test, p )
@@ -67,4 +66,5 @@ def evaluate_classifier( clf, data ):
 
 	print "# testing  | log loss: {:.2%}, AUC: {:.2%}, accuracy: {:.2%}".format( ll, auc, acc )	
 	
+	#return { 'loss': 1 - auc, 'log_loss': ll, 'auc': auc }
 	return { 'loss': ll, 'log_loss': ll, 'auc': auc }

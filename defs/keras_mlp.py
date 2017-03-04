@@ -35,11 +35,11 @@ space = {
 
 # for each hidden layer, we choose size, activation and extras individually
 for i in range( 1, max_layers + 1 ):
-	space[ 'layer_{}_size'.format( i )] = hp.quniform( 'ls', 2, 200, 1 )
-	space[ 'layer_{}_activation'.format( i )] = hp.choice( 'a', 
+	space[ 'layer_{}_size'.format( i )] = hp.quniform( 'ls{}'.format( i ), 2, 200, 1 )
+	space[ 'layer_{}_activation'.format( i )] = hp.choice( 'a{}'.format( i ), 
 		( 'relu', 'sigmoid', 'tanh' ))
-	space[ 'layer_{}_extras'.format( i )] = hp.choice( 'e', ( 
-		{ 'name': 'dropout', 'rate': hp.uniform( 'd', 0.1, 0.5 )}, 
+	space[ 'layer_{}_extras'.format( i )] = hp.choice( 'e{}'.format( i ), ( 
+		{ 'name': 'dropout', 'rate': hp.uniform( 'd{}'.format( i ), 0.1, 0.5 )}, 
 		{ 'name': 'batchnorm' },
 		{ 'name': None } ))	
 	

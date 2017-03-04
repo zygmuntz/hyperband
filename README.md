@@ -1,43 +1,36 @@
 hyperband
 =========
 
-Code for tuning hyperparams with Hyperband, adapted from [Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization](https://people.eecs.berkeley.edu/~kjamieson/hyperband.html). The goal is to provide a fully functional implementation of Hyperband, as well as a number of ready to use functions for a number of classifiers. Currently these include a few scikit-learn classifiers:
+Code for tuning hyperparams with Hyperband, adapted from [Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization](https://people.eecs.berkeley.edu/~kjamieson/hyperband.html). 
+
+	common_defs.py - imports and definitions shared by defs files
+	defs/ - functions and search space definitions for various classifiers
+	hyperband.py - from hyperband import Hyperband
+	load_data.py - data is a dict with x_train, y_train, x_test, y_test
+	main.py - a complete example
+	main_simple.py - a simple example	
+
+The goal is to provide a fully functional implementation of Hyperband, as well as a number of ready to use functions for a number of classifiers. Currently these include a few scikit-learn classifiers:
 
 * gradient boosting (GB)
 * random forest (RF)
 * extremely randomized trees (XT)
 * linear SGD classifier
 
-And one crazy Keras-based multilayer perceptron.
+And one crazy Keras-based multilayer perceptron. 
 
-See [http://fastml.com/tuning-hyperparams-fast-with-hyperband/](http://fastml.com/tuning-hyperparams-fast-with-hyperband/) for a detailed description.
-
-	common_defs.py - imports and definitions shared by various defs files
-	
-	defs_gb.py - functions and search space definitions for gradient boosting
-	defs_keras_mlp.py - definitions for a Keras MLP
-	defs_rf.py - definitions for random forest
-	defs_rf_xt.py - definitions for random forest and extra trees together
-	defs_sgd.py - definitions for a linear SGD classifier
-	defs_xt.py - definitions for extremely randomized trees
-	
-	hyperband.py - from hyperband import Hyperband
-	load_data.py - data is a dict with x_train, y_train, x_test, y_test
-	main.py - a complete example
-	main_simple.py - a simple example	
-	
-
-	
 Usage
 -----
 
 Edit `load_data.py`, or a definitions file directly, to provide your data. Then run `main.py`. The essence of it is
 
-	from hyperband import Hyperband
-	from defs_gb import get_params, try_params
+```python
+from hyperband import Hyperband
+from defs_gb import get_params, try_params
 
-	hb = Hyperband( get_params, try_params )
-	results = hb.run()
+hb = Hyperband( get_params, try_params )
+results = hb.run()
+```
 
 Sample output from a run (three configurations tested) using `defs_xt.py`:
 
@@ -89,4 +82,4 @@ Sample output from a run (three configurations tested) using `defs_xt.py`:
 
 	8 seconds.
 
-
+See [http://fastml.com/tuning-hyperparams-fast-with-hyperband/](http://fastml.com/tuning-hyperparams-fast-with-hyperband/) for a detailed description.

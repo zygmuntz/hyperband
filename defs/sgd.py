@@ -45,8 +45,7 @@ def try_params( n_iterations, params ):
 		x_test_ = scaler.transform( data['x_test'].astype( float ))
 		
 		local_data = { 'x_train': x_train_, 'y_train': data['y_train'], 
-		  'x_test': x_test_, 'y_test': data['y_test']
-		}
+		  'x_test': x_test_, 'y_test': data['y_test'] }
 	else:
 		local_data = data
 	

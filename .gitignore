@@ -1,3 +1,6 @@
 *.py[cod]
 *.pkl
+main_autoimport.py
 data
+defs/fm.py
+defs/*.py[cod]
