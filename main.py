@@ -9,12 +9,15 @@ from pprint import pprint
 
 from hyperband import Hyperband
 
-from defs.gb import get_params, try_params
+#from defs.gb import get_params, try_params
 #from defs.rf import get_params, try_params
 #from defs.xt import get_params, try_params
 #from defs.rf_xt import get_params, try_params
 #from defs.sgd import get_params, try_params
 #from defs.keras_mlp import get_params, try_params
+#from defs.polylearn_fm import get_params, try_params
+#from defs.polylearn_pn import get_params, try_params
+from defs.meta import get_params, try_params
 
 try:
 	output_file = sys.argv[1]

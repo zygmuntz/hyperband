@@ -17,7 +17,12 @@ The goal is to provide a fully functional implementation of Hyperband, as well a
 * extremely randomized trees (XT)
 * linear SGD classifier
 
-And one crazy Keras-based multilayer perceptron. 
+Plus one Keras-based multilayer perceptron, and two [polylearn](https://github.com/scikit-learn-contrib/polylearn/) classifiers. 
+
+Meta-classifier
+---------------
+
+Use `defs.meta` to try many classifiers in one Hyperband run. This is an automatic alternative to constructing search spaces with multiple classifiers, like `defs.rf_xt`, or `defs.polylearn_fm_pn`, by hand.
 
 Usage
 -----
@@ -26,13 +31,13 @@ Edit `load_data.py`, or a definitions file directly, to provide your data. Then 
 
 ```python
 from hyperband import Hyperband
-from defs_gb import get_params, try_params
+from defs.gb import get_params, try_params
 
 hb = Hyperband( get_params, try_params )
 results = hb.run()
 ```
 
-Sample output from a run (three configurations tested) using `defs_xt.py`:
+Sample output from a run (three configurations tested) using `defs.xt`:
 
 	3 | Tue Feb 28 15:39:54 2017 | best so far: 0.5777 (run 2)
 
