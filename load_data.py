@@ -4,7 +4,7 @@
 
 import cPickle as pickle
 
-data_file = 'data/xy.pkl'
+data_file = 'data/classification.pkl'
 
 print "loading..."
 

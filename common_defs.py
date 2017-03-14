@@ -2,11 +2,12 @@
 
 import numpy as np
 
-from math import log
+from math import log, sqrt
 from time import time
 from pprint import pprint
 
 from sklearn.metrics import roc_auc_score as AUC, log_loss, accuracy_score as accuracy
+from sklearn.metrics import mean_squared_error as MSE, mean_absolute_error as MAE
 
 try:
 	from hyperopt import hp
@@ -29,10 +30,9 @@ def handle_integers( params ):
 	
 	return new_params
 	
-	
+###
 
-
-def train_and_eval_sklearn_classifier( clf, data ):
+def train_and_eval_sklearn_classifier( model, data ):
 	
 	x_train = data['x_train']
 	y_train = data['y_train']
@@ -40,7 +40,7 @@ def train_and_eval_sklearn_classifier( clf, data ):
 	x_test = data['x_test']
 	y_test = data['y_test']	
 	
-	clf.fit( x_train, y_train )	
+	model.fit( x_train, y_train )	
 	
 	try:
 		p = clf.predict_proba( x_train )[:,1]	# sklearn convention
@@ -68,3 +68,37 @@ def train_and_eval_sklearn_classifier( clf, data ):
 	
 	#return { 'loss': 1 - auc, 'log_loss': ll, 'auc': auc }
 	return { 'loss': ll, 'log_loss': ll, 'auc': auc }
+
+###
+
+
+def train_and_eval_sklearn_regressor( clf, data ):
+	
+	x_train = data['x_train']
+	y_train = data['y_train']
+	
+	x_test = data['x_test']
+	y_test = data['y_test']	
+	
+	clf.fit( x_train, y_train )	
+	p = clf.predict( x_train )
+
+	mse = MSE( y_train, p )
+	rmse = sqrt( mse )
+	mae = MAE( y_train, p )
+
+
+	print "\n# training | RMSE: {:.4f}, MAE: {:.4f}".format( rmse, mae )
+
+	#
+
+	p = clf.predict( x_test )
+
+	mse = MSE( y_test, p )
+	rmse = sqrt( mse )
+	mae = MAE( y_test, p )
+
+	print "# testing  | RMSE: {:.4f}, MAE: {:.4f}".format( rmse, mae )	
+	
+	return { 'loss': rmse, 'rmse': rmse, 'mae': mae }
+

@@ -5,29 +5,44 @@ Code for tuning hyperparams with Hyperband, adapted from [Hyperband: A Novel Ban
 
 	common_defs.py - imports and definitions shared by defs files
 	defs/ - functions and search space definitions for various classifiers
+	defs_regression/ - the same for regression models
 	hyperband.py - from hyperband import Hyperband
-	load_data.py - data is a dict with x_train, y_train, x_test, y_test
-	main.py - a complete example
-	main_simple.py - a simple example	
+	load_data.py - classification defs import data from this file
+	load_data_regression.py - regression defs import data from this file
+	main.py - a complete example for classification
+	main_regression.py - the same, for regression
+	main_simple.py - a simple, bare-bones, example	
 
-The goal is to provide a fully functional implementation of Hyperband, as well as a number of ready to use functions for a number of classifiers. Currently these include a few scikit-learn classifiers:
+The goal is to provide a fully functional implementation of Hyperband, as well as a number of ready to use functions for a number of models (classifiers and regressors). Currently these include four from _scikit-learn_ and three others:
 
 * gradient boosting (GB)
 * random forest (RF)
 * extremely randomized trees (XT)
-* linear SGD classifier
+* linear SGD
+* factorization machines (from polylearn)
+* polynomial networks (from polylearn)
+* a multilayer perceptron (from Keras)
 
-Plus one Keras-based multilayer perceptron, and two [polylearn](https://github.com/scikit-learn-contrib/polylearn/) classifiers. 
+Meta-classifier/regressor
+-------------------------
 
-Meta-classifier
----------------
+Use `defs.meta`/`defs_regression.meta` to try many models in one Hyperband run. This is an automatic alternative to constructing search spaces with multiple models (like `defs.rf_xt`, or `defs.polylearn_fm_pn`) by hand.
 
-Use `defs.meta` to try many classifiers in one Hyperband run. This is an automatic alternative to constructing search spaces with multiple classifiers, like `defs.rf_xt`, or `defs.polylearn_fm_pn`, by hand.
+Loading data
+------------
+
+Definitions files in `defs`/`defs_regression` import data from `load_data.py` and `load_data_regression.py`, respectively.
+
+Edit these files, or a definitions file directly, to make your data available for tuning.
+
+Regression defs use the _kin8nm_ dataset in `data/kin8nm`. There is no attached data for classification.
+
+For the provided models data format follows _scikit-learn_ conventions, that is, there are _x_train_, _y_train_, _x_test_ and _y_test_ Numpy arrays.
 
 Usage
 -----
 
-Edit `load_data.py`, or a definitions file directly, to provide your data. Then run `main.py`. The essence of it is
+Then run `main.py`, or `main_regression.py`. The essence of it is
 
 ```python
 from hyperband import Hyperband

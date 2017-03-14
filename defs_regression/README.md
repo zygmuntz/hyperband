@@ -1,14 +1,14 @@
-functions and search space definitions
-======================================
+functions and search space definitions for regression
+=====================================================
 
-This directory contains implementations of `get_params()`, `try_params()` and search space for various classifiers.
+This directory contains implementations of `get_params()`, `try_params()` and search space for various regressors (the same as classifiers).
 
-	meta.py - a meta classifier
+	meta.py - a meta regressor
 
 	gb.py - gradient boosting
 	rf.py - random forest
 	rf_xt.py - random forest and extra trees together
-	sgd.py - a linear SGD classifier
+	sgd.py - a linear SGD regressor
 	xt.py - extremely randomized trees	
 	
 	keras_mlp.py - a Keras MLP
