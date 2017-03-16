@@ -20,7 +20,7 @@ class Hyperband:
 
 		self.results = []	# list of dicts
 		self.counter = 0
-		self.best_loss = 999
+		self.best_loss = np.inf
 		self.best_counter = -1
 		
 

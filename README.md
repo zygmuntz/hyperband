@@ -3,12 +3,14 @@ hyperband
 
 Code for tuning hyperparams with Hyperband, adapted from [Hyperband: A Novel Bandit-Based Approach to Hyperparameter Optimization](https://people.eecs.berkeley.edu/~kjamieson/hyperband.html). 
 
-	common_defs.py - imports and definitions shared by defs files
 	defs/ - functions and search space definitions for various classifiers
 	defs_regression/ - the same for regression models
+	common_defs.py - imports and definitions shared by defs files
 	hyperband.py - from hyperband import Hyperband
+	
 	load_data.py - classification defs import data from this file
 	load_data_regression.py - regression defs import data from this file
+	
 	main.py - a complete example for classification
 	main_regression.py - the same, for regression
 	main_simple.py - a simple, bare-bones, example	
@@ -42,7 +44,7 @@ For the provided models data format follows _scikit-learn_ conventions, that is,
 Usage
 -----
 
-Then run `main.py`, or `main_regression.py`. The essence of it is
+Run `main.py` (with your own data), or `main_regression.py`. The essence of it is
 
 ```python
 from hyperband import Hyperband
@@ -52,7 +54,7 @@ hb = Hyperband( get_params, try_params )
 results = hb.run()
 ```
 
-Sample output from a run (three configurations tested) using `defs.xt`:
+Here's a sample output from a run (three configurations tested) using `defs.xt`:
 
 	3 | Tue Feb 28 15:39:54 2017 | best so far: 0.5777 (run 2)
 
