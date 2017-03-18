@@ -141,5 +141,5 @@ def try_params( n_iterations, params ):
 
 	print "# testing  | log loss: {:.2%}, AUC: {:.2%}, accuracy: {:.2%}".format( ll, auc, acc )
 
-	return { 'loss': ll, 'log_loss': ll, 'auc': auc }
+	return { 'loss': ll, 'log_loss': ll, 'auc': auc, 'early_stop': model.stop_training }
 

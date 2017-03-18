@@ -103,5 +103,19 @@ Here's a sample output from a run (three configurations tested) using `defs.xt`:
 	# testing  | log loss: 50.67%, AUC: 76.77%, accuracy: 75.12%
 
 	8 seconds.
+	
+Early stopping
+--------------
+
+Some model may use early stopping (as the Keras MLP example does). If a configuration  stopped early, it doesn't make sense to run it with more iterations (duh). To indicate this, make `try_params()`
+
+```python
+return { 'loss': loss, 'early_stop': True }
+```
+	
+This way, Hyperband will know not to select that configuration for any further runs.
+
+Moar
+----
 
 See [http://fastml.com/tuning-hyperparams-fast-with-hyperband/](http://fastml.com/tuning-hyperparams-fast-with-hyperband/) for a detailed description.

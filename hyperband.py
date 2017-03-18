@@ -50,6 +50,8 @@ class Hyperband:
 					n_configs, n_iterations )
 				
 				val_losses = []
+				early_stops = []
+				
 				for t in T:
 					
 					self.counter += 1
@@ -72,6 +74,9 @@ class Hyperband:
 					loss = result['loss']	
 					val_losses.append( loss )
 					
+					early_stop = result.get( 'early_stop', False )
+					early_stops.append( early_stop )
+					
 					# keeping track of the best result so far (for display only)
 					# could do it be checking results each time, but hey
 					if loss < self.best_loss:
@@ -86,7 +91,10 @@ class Hyperband:
 					self.results.append( result )
 				
 				# select a number of best configurations for the next loop
-				T = [ T[i] for i in np.argsort( val_losses )[0:int( n_configs / self.eta )]]
+				# filter out early stops, if any
+				indices = np.argsort( val_losses )
+				T = [ T[i] for i in indices if not early_stops[i]]
+				T = T[ 0:int( n_configs / self.eta )]
 		
 		return self.results
 	

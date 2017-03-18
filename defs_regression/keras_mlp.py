@@ -146,6 +146,6 @@ def try_params( n_iterations, params ):
 
 	print "# testing  | RMSE: {:.4f}, MAE: {:.4f}".format( rmse, mae )	
 	
-	return { 'loss': rmse, 'rmse': rmse, 'mae': mae }
+	return { 'loss': rmse, 'rmse': rmse, 'mae': mae, 'early_stop': model.stop_training }
 
 
