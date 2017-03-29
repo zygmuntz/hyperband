@@ -32,7 +32,7 @@ def handle_integers( params ):
 	
 ###
 
-def train_and_eval_sklearn_classifier( model, data ):
+def train_and_eval_sklearn_classifier( clf, data ):
 	
 	x_train = data['x_train']
 	y_train = data['y_train']
@@ -40,7 +40,7 @@ def train_and_eval_sklearn_classifier( model, data ):
 	x_test = data['x_test']
 	y_test = data['y_test']	
 	
-	model.fit( x_train, y_train )	
+	clf.fit( x_train, y_train )	
 	
 	try:
 		p = clf.predict_proba( x_train )[:,1]	# sklearn convention
@@ -71,7 +71,7 @@ def train_and_eval_sklearn_classifier( model, data ):
 
 ###
 
-
+# "clf", even though it's a regressor
 def train_and_eval_sklearn_regressor( clf, data ):
 	
 	x_train = data['x_train']
