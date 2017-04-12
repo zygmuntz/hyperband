@@ -1,6 +1,12 @@
 *.py[cod]
 *.pkl
+*.kate-swp
 main_autoimport.py
 defs/fm.py
 defs/*.py[cod]
+defs/*.kate-swp
+defs_regression/*.py[cod]
+defs_regression/*.kate-swp
 data/classification.pkl
+
+
