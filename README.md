@@ -15,15 +15,16 @@ Code for tuning hyperparams with Hyperband, adapted from [Hyperband: A Novel Ban
 	main_regression.py - the same, for regression
 	main_simple.py - a simple, bare-bones, example	
 
-The goal is to provide a fully functional implementation of Hyperband, as well as a number of ready to use functions for a number of models (classifiers and regressors). Currently these include four from _scikit-learn_ and three others:
+The goal is to provide a fully functional implementation of Hyperband, as well as a number of ready to use functions for a number of models (classifiers and regressors). Currently these include four from _scikit-learn_ and four others:
 
 * gradient boosting (GB)
 * random forest (RF)
 * extremely randomized trees (XT)
 * linear SGD
-* factorization machines (from polylearn)
-* polynomial networks (from polylearn)
-* a multilayer perceptron (from Keras)
+* factorization machines from polylearn
+* polynomial networks from polylearn
+* a multilayer perceptron from Keras
+* gradient boosting from XGBoost (classification only)
 
 Meta-classifier/regressor
 -------------------------

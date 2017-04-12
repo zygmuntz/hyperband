@@ -1,7 +1,7 @@
 # meta classifier
 from common_defs import *
 
-models = ( 'gb', 'rf', 'xt', 'sgd', 'polylearn_fm', 'polylearn_pn', 'keras_mlp' )
+models = ( 'xgb', 'gb', 'rf', 'xt', 'sgd', 'polylearn_fm', 'polylearn_pn', 'keras_mlp' )
 
 # import all the functions
 for m in models:

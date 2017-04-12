@@ -17,6 +17,7 @@ from hyperband import Hyperband
 #from defs.keras_mlp import get_params, try_params
 #from defs.polylearn_fm import get_params, try_params
 #from defs.polylearn_pn import get_params, try_params
+#from defs.xgb import get_params, try_params
 from defs.meta import get_params, try_params
 
 try:
