@@ -55,7 +55,7 @@ class Hyperband:
 				for t in T:
 					
 					self.counter += 1
-					print "\n{} | {} | best so far: {:.4f} (run {})\n".format( 
+					print "\n{} | {} | lowest loss so far: {:.4f} (run {})\n".format( 
 						self.counter, ctime(), self.best_loss, self.best_counter )
 					
 					start_time = time()
