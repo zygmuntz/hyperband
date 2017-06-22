@@ -76,6 +76,6 @@ def try_params( n_iterations, params, get_predictions = False ):
 
 	clf = XGB( n_estimators = n_estimators, nthread = -1, **params )
 	
-	return train_and_eval_sklearn_classifier( clf, data, get_predictions = get_predictions )
+	return train_and_eval_sklearn_classifier( clf, data )
 
 	
