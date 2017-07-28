@@ -11,6 +11,8 @@ This directory contains implementations of `get_params()`, `try_params()` and se
 	sgd.py - a linear SGD regressor
 	xt.py - extremely randomized trees	
 	
+	xgb.py - XGBoost regressor
+	
 	keras_mlp.py - a Keras MLP
 	
 	polylearn_fm.py - polylearn factorization machine
