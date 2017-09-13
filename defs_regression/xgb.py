@@ -1,5 +1,5 @@
 "function (and parameter space) definitions for hyperband"
-"binary classification with XGBoost"
+"regression with XGBoost"
 
 from common_defs import *
 
